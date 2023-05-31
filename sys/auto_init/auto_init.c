@@ -70,6 +70,21 @@ extern void sched_round_robin_init(void);
 AUTO_INIT(sched_round_robin_init,
           AUTO_INIT_PRIO_MOD_SCHED_ROUND_ROBIN);
 #endif
+
+
+/*************************************************************************************************
+* INIZIALIZZAZIONE CREATA APPOSITAMENTE PER LO SCHEDULING FEEDBACK, SI
+* TRATTA DI UNA COPIA DI THREAD_CREATE MA CON L'AGGIUNTA DI UN SERVICE TIME.
+*************************************************************************************************/
+#if IS_USED(MODULE_SCHED_FEEDBACK)
+extern void sched_feedback_init(void);
+AUTO_INIT(sched_feedback_init,
+          AUTO_INIT_PRIO_MOD_SCHED_FEEDBACK);
+#endif
+
+/*******************************************************************************************/
+
+
 #if IS_USED(MODULE_DUMMY_THREAD)
 extern void dummy_thread_create(void);
 AUTO_INIT(dummy_thread_create,

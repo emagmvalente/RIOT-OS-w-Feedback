@@ -381,6 +381,14 @@ static inline int sched_runq_more_than_one(uint8_t prio)
     return clist_more_than_one(&sched_runqueues[prio]);
 }
 
+/*********************************************************************************/
+/* FUNZIONE CREATA PER CONTARE ESATTAMENTE I PROCESSI IN CODA*/
+static inline int sched_count_processes(uint8_t prio)
+{
+    return clist_count(&sched_runqueues[prio]);
+}
+/*********************************************************************************/
+
 #ifdef __cplusplus
 }
 #endif

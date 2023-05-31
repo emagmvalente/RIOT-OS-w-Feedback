@@ -105,6 +105,30 @@ void kernel_init(void)
                       THREAD_CREATE_WOUT_YIELD | THREAD_CREATE_STACKTEST,
                       main_trampoline, NULL, "main");
     }
+
+
+/*************************************************************************************************
+* INIZIALIZZAZIONE CREATA APPOSITAMENTE PER LO SCHEDULING FEEDBACK, SI
+* TRATTA DI UNA COPIA DI THREAD_CREATE MA CON L'AGGIUNTA DI UN SERVICE TIME.
+*************************************************************************************************/
+#if IS_USED(MODULE_SCHED_FEEDBACK)
+    if (IS_USED(MODULE_CORE_IDLE_THREAD)) {
+        thread_create_feedback(idle_stack, sizeof(idle_stack),
+                      THREAD_PRIORITY_IDLE,
+                      THREAD_CREATE_WOUT_YIELD | THREAD_CREATE_STACKTEST,
+                      idle_thread, NULL, "idle", 1000000);
+    }
+
+    if (IS_USED(MODULE_CORE_THREAD)) {
+        thread_create_feedback(main_stack, sizeof(main_stack),
+                      THREAD_PRIORITY_MAIN,
+                      THREAD_CREATE_WOUT_YIELD | THREAD_CREATE_STACKTEST,
+                      main_trampoline, NULL, "main", 1000000);
+    }
+#endif
+/*******************************************************************************************/
+
+
     else {
         irq_enable();
         main_trampoline(NULL);

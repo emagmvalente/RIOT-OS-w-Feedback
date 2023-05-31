@@ -210,6 +210,11 @@ struct _thread {
 #ifdef HAVE_THREAD_ARCH_T
     thread_arch_t arch;             /**< architecture dependent part    */
 #endif
+
+
+	int service_time;
+
+
 };
 
 /**
@@ -272,6 +277,23 @@ kernel_pid_t thread_create(char *stack,
                            thread_task_func_t task_func,
                            void *arg,
                            const char *name);
+
+
+/********************************************************************************************
+* FUNZIONE CREATA APPOSITAMENTE PER LO SCHEDULING FEEDBACK, SI TRATTA
+* DI UNA COPIA DI THREAD_CREATE MA CON L'AGGIUNTA DI UN SERVICE TIME.
+********************************************************************************************/
+#if IS_USED(MODULE_SCHED_FEEDBACK)
+kernel_pid_t thread_create_feedback(char *stack,
+                           int stacksize,
+                           uint8_t priority,
+                           int flags,
+                           thread_task_func_t task_func,
+                           void *arg,
+                           const char *name,
+			   int ser_time);
+#endif
+/*******************************************************************************************/
 
 /**
  * @brief       Retrieve a thread control block by PID.
@@ -628,6 +650,7 @@ static inline const char *thread_get_name(const thread_t *thread)
 #ifdef __cplusplus
 }
 #endif
+
 
 /** @} */
 #endif /* THREAD_H */
