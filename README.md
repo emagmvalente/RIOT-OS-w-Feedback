@@ -124,6 +124,11 @@ content.
 
 [forum]: https://forum.riot-os.org
 
+## TEST RRTESTER
+- Change directory to `/RIOT/examples/RRTester`
+- Use `make term` to run
+- Enjoy the project!
+
 ## CONTRIBUTE
 
 To contribute something to RIOT, please refer to our
