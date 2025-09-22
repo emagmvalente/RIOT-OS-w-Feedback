@@ -125,6 +125,8 @@ content.
 [forum]: https://forum.riot-os.org
 
 ## TEST RRTESTER
+The latest test was made in September 23, 2025 using WSL with Ubuntu. This procedure was followed:
+- Make sure you have all the necessary dependencies, use `sudo apt install build-essential git python3-pip gcc-multilib libtool libpthread-stubs0-dev libreadline-dev unzip p7zip-full`
 - Change directory to `/RIOT/examples/RRTester`
 - Use `make` to compile the application
 - Then use `./bin/native/RRTester.elf` to run the application
