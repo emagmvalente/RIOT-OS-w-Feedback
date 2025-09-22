@@ -126,8 +126,9 @@ content.
 
 ## TEST RRTESTER
 - Change directory to `/RIOT/examples/RRTester`
-- Use `make term` to run
-- Enjoy the project!
+- Use `make` to compile the application
+- Then use `./bin/native/RRTester.elf` to run the application
+- Enjoy!
 
 ## CONTRIBUTE
 
